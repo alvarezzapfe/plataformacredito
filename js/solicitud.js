@@ -1,159 +1,131 @@
-// Función para mostrar las secciones de contenido
-function showSection(sectionId) {
-  // Ocultar todas las secciones
-  const sections = document.querySelectorAll(".section");
-  sections.forEach((section) => {
-    section.classList.remove("active");
-  });
+// Objeto para almacenar los datos de la solicitud
+const solicitudData = {
+  informacionGeneral: {},
+  datosFiscales: {},
+  montoSolicitud: {},
+  informacionFinanciera: {},
+  costoCredito: {},
+};
 
-  // Mostrar la sección correspondiente
-  const activeSection = document.getElementById(sectionId);
-  if (activeSection) {
-    activeSection.classList.add("active");
+// Función para cambiar el paso activo
+function changeStep(step) {
+  // Desactivar todos los pasos
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById(`step-${i}`).classList.remove("active"); // Desactivar cada paso
+    document.getElementById(`form-step-${i}`).classList.remove("active"); // Ocultar cada formulario
+  }
+
+  // Activar el paso actual
+  document.getElementById(`step-${step}`).classList.add("active");
+  document.getElementById(`form-step-${step}`).classList.add("active");
+}
+
+// Función para recopilar datos del paso actual
+// Función para recopilar datos del paso actual
+function collectData(step) {
+  switch (step) {
+    case 1:
+      solicitudData.informacionGeneral = {
+        nombreRepresentante: document.getElementById("representante-nombre")
+          .value,
+        razonSocial: document.getElementById("razon-social").value,
+        tipoPersona: document.getElementById("persona-tipo").value,
+        fechaConstitucion: document.getElementById("fecha-constitucion").value,
+      };
+      break;
+    case 2:
+      solicitudData.datosFiscales = {
+        rfc: document.getElementById("rfc").value,
+        regimenFiscal: document.getElementById("regimen-fiscal").value,
+        domicilioFiscal: document.getElementById("domicilio-fiscal").value,
+        actividadEconomica: document.getElementById("actividad-economica")
+          .value,
+      };
+      break;
+    case 3:
+      solicitudData.montoSolicitud = {
+        montoSolicitado: document.getElementById("monto-solicitado").value,
+        fechaSolicitud: document.getElementById("fecha-solicitud").value,
+        plazo: document.getElementById("plazo").value,
+        frecuenciaPago: document.getElementById("frecuencia-pago").value,
+      };
+      break;
+    case 4:
+      solicitudData.informacionFinanciera = {
+        ingresosAnuales: document.getElementById("ingresos").value,
+        ebitdaAnual: document.getElementById("egresos").value,
+        utilidad: document.getElementById("utilidad").value,
+        coberturaEbitdaIntereses: document.getElementById("cobertura").value,
+      };
+      break;
   }
 }
 
-// Función para alternar la visibilidad del menú (hamburger menu)
-function toggleMenu() {
-  const menu = document.getElementById("menuOptions");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+// Función para enviar los datos al backend
+function enviarSolicitud() {
+  console.log("Datos recopilados:", solicitudData); // Debugging
+  
+  fetch("http://localhost:8080/solicitudes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(solicitudData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        // Manejar errores HTTP
+        return response.json().then((errorData) => {
+          console.error("Error del servidor:", errorData);
+          throw new Error("Error al enviar la solicitud: " + response.status);
+        });
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Respuesta del servidor:", data);
+      alert("Solicitud enviada correctamente");
+      window.location.href = "dashboard.html"; // Redirigir al dashboard
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Hubo un problema al enviar la solicitud. Por favor, inténtalo de nuevo.");
+    });
 }
 
-// Función para filtrar las solicitudes en el apartado de Riesgo
-function filtrarSolicitudes() {
-  const input = document.getElementById("buscarSolicitud");
-  const filter = input.value.toLowerCase();
-  const listItems = document.querySelectorAll("#listaSolicitudes li");
 
-  listItems.forEach((item) => {
-    const text = item.textContent || item.innerText;
-    if (text.toLowerCase().indexOf(filter) > -1) {
-      item.style.display = "";
-    } else {
-      item.style.display = "none";
-    }
-  });
-}
-
-// Función para mostrar los detalles del riesgo de una solicitud
-function verDetalleRiesgo(id) {
-  // Aquí puedes hacer una petición a tu backend o trabajar con datos mock.
-  // Por ejemplo, simular que cambiamos la información mostrada en la sección de Riesgo.
-
-  const solicitudNumero = document.getElementById("solicitudNumero");
-  const empresaNombre = document.getElementById("empresaNombre");
-  const monto = document.getElementById("monto");
-  const estatus = document.getElementById("estatus");
-
-  // Simulamos la actualización de los detalles
-  solicitudNumero.textContent = `#${id}`;
-  empresaNombre.textContent = `Empresa ${id}`;
-  monto.textContent = `$${(Math.random() * 100000).toFixed(2)}`;
-  estatus.textContent = id % 2 === 0 ? "Aprobado" : "Rechazado";
-
-  // Hacer visible la sección de Riesgo
-  showSection("Riesgo");
-}
-
-// Función para ver detalles de una empresa
-function verDetalleEmpresa(id) {
-  // Aquí puedes hacer algo similar, como cargar detalles dinámicos de la empresa
-  alert(`Ver detalles de la empresa ${id}`);
-}
-
-// Función para enviar pregunta al Copiloto AI
-function enviarPregunta() {
-  const question = document.getElementById("aiQuestion").value;
-  if (question.trim()) {
-    alert(`Pregunta enviada: ${question}`);
-    document.getElementById("aiQuestion").value = ""; // Limpiar el campo
-  } else {
-    alert("Por favor, ingresa una pregunta.");
-  }
-}
-
-// Llamada inicial para mostrar la primera sección
-document.addEventListener("DOMContentLoaded", () => {
-  showSection("ingresoGeneral"); // Por ejemplo, inicia en la sección de Datos Generales
-});
-
-// chat AI
-// Función para enviar una pregunta al Copiloto AI
-function enviarPregunta() {
-  const question = document.getElementById("aiQuestion").value;
-  const respuestaText = document.getElementById("respuestaText");
-
-  if (question.trim()) {
-    // Muestra la pregunta en el cuadro de respuesta
-    respuestaText.textContent = `Tu pregunta: ${question}`;
-
-    // Simula la respuesta del Copiloto AI
-    setTimeout(() => {
-      respuestaText.textContent = `Respuesta del mago: Estoy procesando tu solicitud...`;
-    }, 1000);
-
-    // Limpiar el input de la pregunta
-    document.getElementById("aiQuestion").value = "";
-  } else {
-    alert("Por favor, ingresa una pregunta.");
-  }
-}
-
-// ingreso general
-
+// Función para ir al siguiente paso
 function nextStep() {
-  let step1Completed = checkStep1();
-  let step2Completed = checkStep2();
-  let step3Completed = checkStep3();
+  // Obtener el paso activo
+  const activeStep = document.querySelector(".step.active");
+  const activeIndex = parseInt(
+    activeStep.querySelector(".step-circle").textContent
+  );
+  collectData(activeIndex);
 
-  if (step1Completed) {
-    document.getElementById("form-step-1").style.display = "none";
-    document.getElementById("form-step-2").style.display = "block";
-    document.getElementById("circle-1").style.backgroundColor = "green";
-  }
+  const nextStep = activeStep.nextElementSibling;
 
-  if (step2Completed) {
-    document.getElementById("form-step-2").style.display = "none";
-    document.getElementById("form-step-3").style.display = "block";
-    document.getElementById("circle-2").style.backgroundColor = "green";
-  }
-
-  if (step3Completed) {
-    document.getElementById("circle-3").style.backgroundColor = "green";
-    // Aquí puedes agregar una acción de envío del formulario final
-    alert("Solicitud Enviada");
+  // Si hay un siguiente paso, cambiar a él
+  if (nextStep) {
+    const nextIndex = parseInt(
+      nextStep.querySelector(".step-circle").textContent
+    );
+    changeStep(nextIndex);
+  } else {
+    // Si no hay más pasos, enviar los datos al backend
+    enviarSolicitud();
   }
 }
 
-function checkStep1() {
-  // Verifica si los campos del paso 1 están completos
-  return (
-    document.getElementById("nombre-representante").value &&
-    document.getElementById("razon-social").value &&
-    document.getElementById("marca-comercial").value &&
-    document.getElementById("tipo-persona").value &&
-    document.getElementById("fecha-constitucion").value &&
-    document.getElementById("correo-representante").value
-  );
-}
+//
 
-function checkStep2() {
-  // Verifica si los campos del paso 2 están completos
-  return (
-    document.getElementById("rfc-empresa").value &&
-    document.getElementById("facturacion-ano-actual").value &&
-    document.getElementById("facturacion-ano-1").value &&
-    document.getElementById("facturacion-ano-2").value &&
-    document.getElementById("facturacion-ano-3").value &&
-    document.getElementById("pagina-web").value
-  );
-}
+// Para asegurarnos de que el primer paso se muestre al inicio
+window.onload = () => {
+  changeStep(1);
+};
 
-function checkStep3() {
-  // Verifica si los campos del paso 3 están completos
-  return (
-    document.getElementById("monto-solicitado").value &&
-    document.getElementById("pago-intereses").value &&
-    document.getElementById("garantias").value
-  );
+// Función para finalizar y enviar la solicitud
+function finalizarSolicitud() {
+  collectData(4); // Recopilar datos del último paso
+  enviarSolicitud(); // Llamar a la función para enviar datos
 }

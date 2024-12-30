@@ -11,258 +11,194 @@
     />
   </head>
   <body>
-    <!-- Barra lateral (siempre visible) -->
-
-    <div class="sidebar">
-
-      <a href="javascript:void(0)" onclick="showSection('ingresoGeneral')"
-        >Ingreso Datos Generales</a
-      >
-      <a href="javascript:void(0)" onclick="showSection('garantias')"
-        >Garantías / Colaterales</a
-      >
-      <a href="javascript:void(0)" onclick="showSection('Riesgo Fin')">Riesgo</a>
-      
-      <a href="javascript:void(0)" onclick="showSection('Empresa Solicitante')"
-        >Empresa Solicitante</a
-      >
-      <a href="javascript:void(0)" onclick="showSection('copiloto AI')"
-        >Copiloto Financiero AI</a
-      >
-      <a href="javascript:void(0)" onclick="window.location.href='dashboard.html'">
-        Regresa a Dashboard
-    </a>
-    
-    </div>
-
-    <!-- Botón de menú (hamburger) para opciones de inicio, perfil y cerrar sesión -->
-    <div class="menu-btn" onclick="toggleMenu()">
-      &#9776;
-      <!-- Icono de tres rayas horizontales -->
-    </div>
-
-    <!-- Opciones de menú superior -->
-    <div id="menuOptions" class="menu-options">
-      <a href="index.html" class="menu-link">Inicio</a>
-      <a
-        href="javascript:void(0)"
-        onclick="showSection('perfil')"
-        class="menu-link"
-        >Perfil</a
-      >
-      <a href="index.html" class="menu-link">Cerrar sesión</a>
-    </div>
-
-    <!-- Contenido principal -->
-    <div class="content">
-      <header>
-        <h1></h1>
-      </header>
-
-      <div class="container">
-        <!-- Ingreso Datos General -->
-        <section id="ingresoGeneral" class="section active">
-          <h2>Ingreso de Solocitud de Crédito</h2>
-          
-          <p>Ingresa Manualmente o por API los datos de Solicitud Nueva</p>
-          <div class="form-container">
-            <!-- Pasos de progreso -->
-            <div class="steps">
-                <div class="step" id="step-1">
-                    <div class="step-circle" id="circle-1">1</div>
-                    <p>Información General</p>
-                </div>
-                <div class="step" id="step-2">
-                    <div class="step-circle" id="circle-2">2</div>
-                    <p>Facturación, Fiscal y Legal</p>
-                </div>
-                <div class="step" id="step-3">
-                    <div class="step-circle" id="circle-3">3</div>
-                    <p>Monto de Solicitud</p>
-                </div>
-            </div>
-        
-            <!-- Formulario de Información General -->
-            <div class="form-step" id="form-step-1">
-                <h3>Información General</h3>
-                <form id="form-general">
-                    <label for="nombre-representante">Nombre Completo del Representante Legal:</label>
-                    <input type="text" id="nombre-representante" required><br>
-        
-                    <label for="razon-social">Razón Social:</label>
-                    <input type="text" id="razon-social" required><br>
-        
-                    <label for="marca-comercial">Marca Comercial:</label>
-                    <input type="text" id="marca-comercial" required><br>
-        
-                    <label for="tipo-persona">Persona Moral o Persona Física con Actividad Empresarial:</label>
-                    <select id="tipo-persona" required>
-                        <option value="moral">Persona Moral</option>
-                        <option value="fisica">Persona Física con Actividad Empresarial</option>
-                    </select><br>
-        
-                    <label for="fecha-constitucion">Fecha de Constitución o Inicio de Actividades:</label>
-                    <input type="date" id="fecha-constitucion" required><br>
-        
-                    <label for="correo-representante">Correo del Representante Legal:</label>
-                    <input type="email" id="correo-representante" required><br>
-        
-                    <button type="button" id="next-step-1" onclick="nextStep()">Siguiente</button>
-                </form>
-            </div>
-        
-            <!-- Formulario de Facturación, Fiscal y Legal (invisible por ahora) -->
-            <div class="form-step" id="form-step-2" style="display: none;">
-                <h3>Información de Facturación, Fiscal y Legal</h3>
-                <form id="form-fiscal">
-                    <label for="rfc-empresa">RFC de la Empresa:</label>
-                    <input type="text" id="rfc-empresa" required><br>
-        
-                    <label for="facturacion-ano">Niveles de Facturación por Año:</label><br>
-                    <input type="text" id="facturacion-ano-actual" placeholder="Este año" required><br>
-                    <input type="text" id="facturacion-ano-1" placeholder="Último año" required><br>
-                    <input type="text" id="facturacion-ano-2" placeholder="Hace 2 años" required><br>
-                    <input type="text" id="facturacion-ano-3" placeholder="Hace 3 años" required><br>
-        
-                    <label for="pagina-web">Página Web de la Empresa:</label>
-                    <input type="url" id="pagina-web" required><br>
-        
-                    <button type="button" id="next-step-2" onclick="nextStep()">Siguiente</button>
-                </form>
-            </div>
-        
-            <!-- Formulario de Monto de Solicitud (invisible por ahora) -->
-            <div class="form-step" id="form-step-3" style="display: none;">
-                <h3>Monto de Solicitud</h3>
-                <form id="form-monto">
-                    <label for="monto-solicitado">Monto Solicitado:</label>
-                    <input type="number" id="monto-solicitado" required><br>
-        
-                    <label for="pago-intereses">Pago de Intereses:</label>
-                    <select id="pago-intereses" required>
-                        <option value="trimestral">Trimestral</option>
-                        <option value="semestral">Semestral</option>
-                        <option value="anual">Anual</option>
-                    </select><br>
-        
-                    <label for="garantias">Garantías:</label>
-                    <input type="text" id="garantias" required><br>
-        
-                    <button type="submit" id="submit-form">Enviar Solicitud</button>
-                </form>
-            </div>
-        </div>
-        
-        </section>
-
-        
-
-        <!-- Riesgo -->
-        <section id="Riesgo Fin" class="section">
-          <h2>Riesgo</h2>
-          <p>
-            Verifica las necesidades de liquidez a corto plazo según los
-            vencimientos de los créditos.
-          </p>
-        
-        </section>
-  
-
-        <!-- Garantias -->
-        <section id="garantias" class="section">
-          <h2>Garantías Reales o Hipotecarias</h2>
-          <p>
-            Información detallada de las garantías de la Empresa Promovida.
-          </p>
-        
-        </section>
-
-        <!-- Empresas Promovidas -->
-        <section id="Empresa Solicitante" class="section">
-          <h2>Empresa Solicitante</h2>
-          <p>
-            Información detallada de las empresas promovidas, como RFC, nivel de
-            facturación, y más.
-          </p>
-
-          <!-- Botón de Agregar Empresa Promovida -->
-          <button class="btn-agregar" onclick="agregarEmpresa()">
-            Agregar Empresa
-          </button>
-
-          <div class="cartera-container">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Nombre Comercial / Marca</th>
-                  <th>Razón Social</th>
-                  <th>Representante Legal</th>
-                  <th>Registro (Fecha)</th>
-                  <th>Detalle</th>
-                </tr>
-              </thead>
-              <tbody id="empresasTable">
-                <!-- Aquí se generarán dinámicamente los datos -->
-                <tr>
-                  <td>Comercial XYZ</td>
-                  <td>Razón XYZ S.A. de C.V.</td>
-                  <td>Juan Pérez</td>
-                  <td>2024-12-01</td>
-                  <td>
-                    <button
-                      class="btn-detalle"
-                      onclick="verDetalleEmpresa('1')"
-                    >
-                      Ver Detalle
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-    
-
-        <!-- Copiloto Financiero AI -->
-        <section id="copiloto AI" class="section">
-          <h2>Copiloto Financiero AI</h2>
-          <p>
-            Accede a recomendaciones personalizadas sobre tus créditos con la
-            ayuda de inteligencia artificial.
-          </p>
-          <!-- Imagen con animación -->
-          
-          <div id="copiloto AI" class="copiloto-container">
-            <div id="copilotoAIIcon" class="copiloto-icon">
-              <img src="images/wizard.png" alt="Copiloto AI" />
-            </div>
-            <div id="copilotoAIChatbox" class="copiloto-chatbox">
-              <h3>Pregunta o consulta con el mago</h3>
-              <textarea id="aiQuestion" placeholder="Escribe tu pregunta aquí..."></textarea>
-              <button onclick="enviarPregunta()">Enviar</button>
-              <div id="respuestaContainer" class="respuesta-container">
-                <h4>Respuesta del mago:</h4>
-                <p id="respuestaText">El mago está esperando tu pregunta...</p>
-              </div>
-            </div>
-          </div>
-          
-        </section>
-
+    <header>
+      <div class="header-container">
+        <button
+          class="dashboard-btn"
+          onclick="window.location.href='dashboard.html'"
+        >
+          Regresar a Dashboard
+        </button>
+        <h1>Ingreso de Solicitud de Crédito</h1>
       </div>
+    </header>
+
+    <div class="container">
+      <section id="ingresoGeneral" class="section active">
+        <div class="form-container">
+          <!-- Pasos de progreso -->
+          <div class="steps">
+            <div class="step" id="step-1" onclick="changeStep(1)">
+              <div class="step-circle">1</div>
+              <p>Información General</p>
+            </div>
+            <div class="step" id="step-2" onclick="changeStep(2)">
+              <div class="step-circle">2</div>
+              <p>Datos Fiscales</p>
+            </div>
+            <div class="step" id="step-3" onclick="changeStep(3)">
+              <div class="step-circle">3</div>
+              <p>Monto de Solicitud</p>
+            </div>
+            <div class="step" id="step-4" onclick="changeStep(4)">
+              <div class="step-circle">4</div>
+              <p>Información Financiera</p>
+            </div>
+            
+          </div>
+
+          <!-- Formulario de Información General -->
+          <div class="form-step active" id="form-step-1">
+            <h3>Información General</h3>
+            <form id="form-general">
+              <label for="representante-nombre"
+                >Nombre Completo del Representante:</label
+              >
+              <input
+                type="text"
+                id="representante-nombre"
+                name="representanteNombre"
+                required
+              /><br />
+
+              <label for="razon-social">Razón Social:</label>
+              <input
+                type="text"
+                id="razon-social"
+                name="razonSocial"
+                required
+              /><br />
+
+              <label for="persona-tipo">Tipo de Persona:</label>
+              <select id="persona-tipo" name="personaTipo" required>
+                <option value="moral">Persona Moral</option>
+                <option value="fisica">Persona Física</option></select
+              ><br />
+
+              <label for="fecha-constitucion">Fecha de Constitución:</label>
+              <input
+                type="date"
+                id="fecha-constitucion"
+                name="fechaConstitucion"
+                required
+              /><br />
+
+              <button type="button" onclick="nextStep()">Siguiente</button>
+            </form>
+          </div>
+
+          <!-- Formulario de Datos Fiscales -->
+          <div class="form-step" id="form-step-2">
+            <h3>Datos Fiscales</h3>
+            <form id="form-fiscales">
+              <label for="rfc">RFC:</label>
+              <input type="text" id="rfc" name="rfc" required /><br />
+
+              <label for="regimen-fiscal">Régimen Fiscal:</label>
+              <select id="regimen-fiscal" name="regimenFiscal" required>
+                <option value="moral">Persona Moral</option>
+                <option value="fisica">Persona Física</option></select
+              ><br />
+
+              <label for="domicilio-fiscal">Domicilio Fiscal:</label>
+              <input
+                type="text"
+                id="domicilio-fiscal"
+                name="domicilioFiscal"
+                required
+              /><br />
+
+              <label for="actividad-economica">Actividad Económica:</label>
+              <input
+                type="text"
+                id="actividad-economica"
+                name="actividadEconomica"
+                required
+              /><br />
+
+              <button type="button" onclick="nextStep()">Siguiente</button>
+            </form>
+          </div>
+
+          <!-- Formulario de Monto de Solicitud -->
+          <div class="form-step" id="form-step-3">
+            <h3>Monto de Solicitud</h3>
+            <form id="form-monto">
+              <label for="monto-solicitado">Monto Solicitado:</label>
+              <input
+                type="number"
+                id="monto-solicitado"
+                name="montoSolicitado"
+                required
+              /><br />
+
+              <label for="fecha-solicitud">Fecha de Solicitud:</label>
+              <input
+                type="date"
+                id="fecha-solicitud"
+                name="fechaSolicitud"
+                required
+              /><br />
+
+              <label for="plazo">Plazo:</label>
+              <input type="number" id="plazo" name="plazo" required /><br />
+
+              <label for="frecuencia-pago">Frecuencia de Pago:</label>
+              <select id="frecuencia-pago" name="frecuenciaPago" required>
+                <option value="mensual">Mensual</option>
+                <option value="semanal">Semanal</option></select
+              ><br />
+
+              <button type="button" onclick="nextStep()">Siguiente</button>
+            </form>
+          </div>
+
+          <!-- Formulario de Información Financiera -->
+          <div class="form-step" id="form-step-4">
+            <h3>Información Financiera</h3>
+            <form id="form-financiera">
+              <label for="ingresos">Ingresos del Último Año:</label>
+              <input
+                type="number"
+                id="ingresos"
+                name="ingresos"
+                required
+              /><br />
+
+              <label for="egresos">EBITDA Último Año:</label>
+              <input type="number" id="egresos" name="egresos" required /><br />
+
+              <label for="utilidad">Utilidad Neta:</label>
+              <input
+                type="number"
+                id="utilidad"
+                name="utilidad"
+                required
+              /><br />
+
+              <label for="cobertura">Cobertura de Intereses:</label>
+              <input
+                type="number"
+                id="cobertura"
+                name="cobertura"
+                required
+              /><br />
+
+              <button
+                type="button"
+                id="finalizar-btn"
+                onclick="finalizarSolicitud()">Finalizar Solicitud
+              </button>
+
+            </form>
+          </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
 
-    <footer>
-      <p>&copy; 2024 Plataforma Crédito. Todos los derechos reservados.</p>
-    </footer>
-
-    <!-- Scripts al final del archivo -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/solicitud.js"></script>
-
-  </section>
-  
   </body>
 </html>

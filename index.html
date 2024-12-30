@@ -42,11 +42,12 @@
     <link href="css/responsive.css" rel="stylesheet" />
   </head>
 
-  <body>
+  <body<body style="background-color: #dd00ff;">
+    
     <div class="hero_area">
       <div class="hero_bg_box">
         <div class="bg_img_box">
-          <img src="images/hero-bg.png" alt="" />
+          
         </div>
       </div>
 
@@ -56,7 +57,7 @@
           <nav class="navbar navbar-expand-lg custom_nav-container">
             <a class="navbar-brand" href="index.html">
               <span>
-                Plataforma de Análisis y monitoreo de Crédito Crowdlink
+                Plataforma de Análisis de Crédito
               </span>
             </a>
 
@@ -89,7 +90,7 @@
                 </li>
                 -->
                 <li class="nav-item">
-                  <a class="nav-link" href="login.html">
+                  <a class="nav-link" href="ingreso.html">
                     <i class="fa fa-user"></i> Ingreso
                   </a>
                 </li>
@@ -115,11 +116,11 @@
                   <div class="col-md-6">
                     <div class="detail-box">
                       <h1>
-                        Utiliza nuestra API <br />
-                        monitorea en tiempo real: Créditos & Garantías.
+                        Plataforma para <br />
+                        monitoreo en tiempo real del portafolio de Créditos
                       </h1>
                       <p>
-                        Únete a la lista de espera para utilizar nuestra API. 
+                         
                       </p>
                       <div class="btn-box">
                         <a href="" class="btn1"> Más información </a>
@@ -209,6 +210,72 @@
     </section>
 
     <!-- end service section -->
+
+
+<!-- calculadora section -->
+
+<section class="service_section layout_padding">
+  <!-- Contenido principal -->
+  <div class="content">
+    <header>
+      <h1>Calculadora de Créditos</h1>
+    </header>
+
+    <div class="container">
+      <!-- Caja izquierda -->
+      <section id="dashboard" class="section active">
+        <div class="indicators">
+          <div class="indicator">
+            <h3>Monto en dinero</h3>
+            <input
+              type="number"
+              id="montoInput"
+              placeholder="Ingrese el monto"
+            />
+          </div>
+          <div class="indicator">
+            <h3>Plazo del Crédito</h3>
+            <select id="plazoInput">
+              <option value="12">12 meses</option>
+              <option value="18">18 meses</option>
+              <option value="24">24 meses</option>
+              <option value="36">36 meses</option>
+            </select>
+          </div>
+          <div class="indicator">
+            <h3>Amortizable</h3>
+            <select id="amortizableInput">
+              <option value="Amortizable">Amortizable</option>
+              <option value="No Amortizable">No Amortizable</option>
+            </select>
+          </div>
+          <div class="indicator">
+            <h3>Input de Tasa</h3>
+            <input
+              type="number"
+              id="spreadInput"
+              placeholder="Ingrese Tasa"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Caja derecha -->
+      <section id="resultado">
+        <div class="result-container">
+          <h3>Intereses + Capital a pagar mensualmente</h3>
+          <p id="resultadoPago">--</p>
+          <button class="calcular-btn" onclick="calcularPago()">
+            Calcular
+          </button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- Calculadora -->
+
 
     <!-- about section -->
 
@@ -327,7 +394,7 @@
       </div>
     </section>
     <!-- footer section -->
-
+    <script src="js/calculadora.js"></script>
     <!-- jQery -->
     <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
     <!-- popper js -->
@@ -348,5 +415,9 @@
     <!-- Google Map -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
     <!-- End Google Map -->
+
+    <script src="bundle.js"></script>
+
+
   </body>
 </html>

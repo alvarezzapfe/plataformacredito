@@ -276,87 +276,48 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// tabla riesgo
+// Gráfica de credito seccion dashboard
 
-// Datos de la tabla
-const ingresos = [1000000, 1500000, 2000000, 2500000];
-const ebitda = [500000, 700000, 900000, 1100000];
-const pasivos = [300000, 350000, 400000, 450000];
-const utilidad = [200000, 250000, 300000, 350000];
+// Datos para la gráfica
+const labels = ["1T", "2T", "3T", "4T"];
+const data = {
+  labels: labels,
+  datasets: [
+    {
+      label: "Crecimiento mensual (%)",
+      data: [2.5, 3.0, 2.8, 3.2, 3.5, 4.0], // Reemplaza con datos reales si es necesario
+      backgroundColor: "rgba(54, 162, 235, 0.2)",
+      borderColor: "rgba(54, 162, 235, 1)",
+      borderWidth: 1,
+    },
+  ],
+};
 
-// Llenar la tabla con datos
-document.getElementById("ingresosAnio1Val").textContent = ingresos[0];
-document.getElementById("ingresosAnio2Val").textContent = ingresos[1];
-document.getElementById("ingresosAnio3Val").textContent = ingresos[2];
-document.getElementById("ingresosAnio4Val").textContent = ingresos[3];
-
-document.getElementById("ebitdaAnio1Val").textContent = ebitda[0];
-document.getElementById("ebitdaAnio2Val").textContent = ebitda[1];
-document.getElementById("ebitdaAnio3Val").textContent = ebitda[2];
-document.getElementById("ebitdaAnio4Val").textContent = ebitda[3];
-
-document.getElementById("pasivosAnio1Val").textContent = pasivos[0];
-document.getElementById("pasivosAnio2Val").textContent = pasivos[1];
-document.getElementById("pasivosAnio3Val").textContent = pasivos[2];
-document.getElementById("pasivosAnio4Val").textContent = pasivos[3];
-
-document.getElementById("utilidadAnio1Val").textContent = utilidad[0];
-document.getElementById("utilidadAnio2Val").textContent = utilidad[1];
-document.getElementById("utilidadAnio3Val").textContent = utilidad[2];
-document.getElementById("utilidadAnio4Val").textContent = utilidad[3];
-
-// Configuración de la gráfica 3D
-const ctx = document.getElementById("graficaRiesgo").getContext("2d");
-const graficaRiesgo = new Chart(ctx, {
-  type: "bar",
-  data: {
-    labels: ["Año 1", "Año 2", "Año 3", "Año 4"],
-    datasets: [
-      {
-        label: "Ingresos",
-        data: ingresos,
-        backgroundColor: "#007bff",
-        borderColor: "#0056b3",
-        borderWidth: 1,
-      },
-      {
-        label: "EBITDA",
-        data: ebitda,
-        backgroundColor: "#28a745",
-        borderColor: "#218838",
-        borderWidth: 1,
-      },
-      {
-        label: "Pasivos",
-        data: pasivos,
-        backgroundColor: "#ffc107",
-        borderColor: "#e0a800",
-        borderWidth: 1,
-      },
-      {
-        label: "Utilidad Neta/Pérdida",
-        data: utilidad,
-        backgroundColor: "#dc3545",
-        borderColor: "#c82333",
-        borderWidth: 1,
-      },
-    ],
-  },
+// Configuración del gráfico
+const config = {
+  type: "line", // Tipo de gráfico: línea
+  data: data,
   options: {
     responsive: true,
     plugins: {
       legend: {
+        display: true,
         position: "top",
       },
-      tooltip: {
-        callbacks: {
-          label: function (tooltipItem) {
-            return tooltipItem.dataset.label + ": " + tooltipItem.raw;
-          },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        title: {
+          display: true,
+          text: "Porcentaje (%)",
         },
       },
     },
   },
-});
+};
 
-// Cartera de Créditos
+const graficoCartera = new Chart(
+  document.getElementById("graficoCartera"),
+  config
+);

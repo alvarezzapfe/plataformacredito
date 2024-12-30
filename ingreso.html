@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Encabezado existente -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+
+    <style>
+      .login-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 400px;
+        text-align: center;
+      }
+
+      .login-container h3 {
+        margin-bottom: 20px;
+        font-weight: 700;
+        color: #333333;
+      }
+
+      .login-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #cccccc;
+        border-radius: 5px;
+      }
+
+      .login-container button {
+        width: 100%;
+        padding: 10px;
+        background: #007bff;
+        color: #ffffff;
+        border: none;
+        border-radius: 5px;
+        font-size: 18px;
+        cursor: pointer;
+      }
+
+      .login-container button:hover {
+        background: #0056b3;
+      }
+
+      .toggle-link {
+        color: #007bff;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="hero_area">
+      <div class="hero_bg_box">
+        <div class="bg_img_box">
+          <img src="images/hero-bg.png" alt="" />
+        </div>
+      </div>
+
+      <!-- Header -->
+      <header class="header_section">
+        <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg custom_nav-container">
+            <a class="navbar-brand" href="index.html">
+              <span>Portal de Ingreso</span>
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Login/Register Container -->
+      <div class="login-container">
+        <h3 id="formTitle">Ingreso de Usuario</h3>
+        <form id="authForm">
+          <!-- Login Form -->
+          <div id="loginView">
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="Correo Electrónico"
+              required
+            />
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Contraseña"
+              required
+            />
+            <button type="button" onclick="location.href='dashboard.html'">
+              Ingresar
+            </button>
+          </div>
+
+          <!-- Register Form -->
+          <div id="registerView" style="display: none">
+            <input
+              type="text"
+              id="firstName"
+              placeholder="Nombre(s)"
+              required
+            />
+            <input
+              type="text"
+              id="lastName"
+              placeholder="Apellido Paterno"
+              required
+            />
+            <input
+              type="text"
+              id="secondLastName"
+              placeholder="Apellido Materno"
+              required
+            />
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="Correo Electrónico"
+              required
+            />
+            <input
+              type="text"
+              id="phone"
+              placeholder="Celular (con código país)"
+              required
+            />
+            <button type="submit">Registrarse</button>
+          </div>
+        </form>
+        <span class="toggle-link" id="toggleLink"
+          >¿Nuevo usuario? Regístrate</span
+        >
+      </div>
+    </div>
+
+    <script>
+      const toggleLink = document.getElementById("toggleLink");
+      const loginView = document.getElementById("loginView");
+      const registerView = document.getElementById("registerView");
+      const formTitle = document.getElementById("formTitle");
+
+      toggleLink.addEventListener("click", () => {
+        if (loginView.style.display === "none") {
+          loginView.style.display = "block";
+          registerView.style.display = "none";
+          formTitle.textContent = "Ingreso de Usuario Administrador";
+          toggleLink.textContent = "¿Nuevo usuario? Regístrate";
+        } else {
+          loginView.style.display = "none";
+          registerView.style.display = "block";
+          formTitle.textContent = "Registro de Nuevo Usuario";
+          toggleLink.textContent = "¿Ya tienes cuenta? Ingresa";
+        }
+      });
+    </script>
+    <!-- Footer -->
+    <section class="footer_section">
+      <div class="container">
+        <p>
+          &copy; <span id="displayYear"></span> Todos los Derechos Reservados
+          <a href="https://www.crowdlink.mx"
+            >PorCuanto S.A. de C.V., Institución de Financiamiento Colectivo</a
+          >
+        </p>
+      </div>
+    </section>
+  </body>
+</html>

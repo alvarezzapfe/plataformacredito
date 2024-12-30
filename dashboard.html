@@ -23,13 +23,6 @@
       <a href="javascript:void(0)" onclick="showSection('carteraCreditos')"
         >Cartera de Créditos</a
       >
-      <a href="javascript:void(0)" onclick="showSection('cobranza')"
-        >Cobranza</a
-      >
-      <a href="javascript:void(0)" onclick="showSection('garantias')"
-        >Garantías</a
-      >
-
       <a href="javascript:void(0)" onclick="showSection('Riesgo')">Riesgo</a>
 
       <a href="javascript:void(0)" onclick="showSection('empresasPromovidas')"
@@ -39,7 +32,7 @@
         >Copiloto Financiero AI</a
       >
       <a href="javascript:void(0)" onclick="showSection('usuariosEmpresa')"
-        >Usuarios de la Empresa</a
+        >Usuarios Habilitados</a
       >
     </div>
 
@@ -90,12 +83,15 @@
               <h3>Vencimientos en 3 Meses</h3>
               <p id="vencimientosProximos">5</p>
             </div>
+            <section id="grafica-cartera">
+              <div class="container">
+                <h3>Crecimiento de cartera de crédito vigente</h3>
+                <canvas id="graficoCartera" width="400" height="200"></canvas>
+              </div>
+            </section>
+
           </div>
         </section>
-
-        
-        
-
 
         <!-- Solicitudes de Crédito -->
         <section id="solicitudesCredito" class="section">
@@ -162,31 +158,6 @@
           </div>
         </section>
 
-        <!-- garantias -->
-        <section id="garantias" class="section active">
-          <h2>Administración de Garantías</h2>
-          <p class="active-user">Usuario activo: luis@crowdlink.mx</p>
-          <p>Verifica el estado de las garantías administradas</p>
-          <div id="dashboardIndicators" class="indicators">
-            <div class="indicator">
-              <h3>Créditos Activos</h3>
-              <p id="numCreditosActivos">15</p>
-            </div>
-            <div class="indicator">
-              <h3>Garantías</h3>
-              <p id="numSolicitudes">7</p>
-            </div>
-            <div class="indicator">
-              <h3>Monto Crédito Respaldado por Garantías</h3>
-              <p id="montoCreditoActivo">$1,500,000</p>
-            </div>
-            <div class="indicator">
-              <h3>Valor Total Estimado de las Garantías</h3>
-              <p id="vencimientosProximos">5</p>
-            </div>
-          </div>
-        </section>
-
         <!-- Riesgo -->
         <section id="Riesgo" class="section">
           <h2>Riesgo</h2>
@@ -194,72 +165,7 @@
             Verifica las necesidades de liquidez a corto plazo según los
             vencimientos de los créditos.
           </p>
-        
-          <!-- Buscador -->
-          <div class="buscador-container">
-            <input
-              type="text"
-              id="buscarSolicitud"
-              class="buscador"
-              placeholder="Buscar por # de solicitud..."
-              onkeyup="filtrarSolicitudes()"
-            />
-            <ul id="listaSolicitudes" class="lista-solicitudes">
-              <!-- Aquí se desplegarán las solicitudes que coincidan con la búsqueda -->
-              <li onclick="verDetalleRiesgo(1)">#001 - Empresa XYZ</li>
-              <li onclick="verDetalleRiesgo(2)">#002 - Empresa ABC</li>
-            </ul>
-          </div>
-        
-          <!-- Cajas de Información -->
-          <div id="informacionRiesgo" class="informacion-riesgo">
-            <div class="info-caja" id="solicitudInfo">
-              <h3># de Solicitud</h3>
-              <p id="solicitudNumero">-</p>
-            </div>
-            <div class="info-caja" id="empresaInfo">
-              <h3>Nombre Empresa</h3>
-              <p id="empresaNombre">-</p>
-            </div>
-            <div class="info-caja" id="montoInfo">
-              <h3>Monto</h3>
-              <p id="monto">-</p>
-            </div>
-            <div class="info-caja" id="estatusInfo">
-              <h3>Estatus</h3>
-              <p id="estatus">-</p>
-            </div>
-            <!--  Aquí van las cajas de abajo -->
-            <div class="info-caja" id="solicitudInfo">
-              <h3>Nivel de Riesgo</h3>
-              <p id="solicitudNumero">-</p>
-            </div>
-            <div class="info-caja" id="empresaInfo">
-              <h3>Nombre Empresa</h3>
-              <p id="empresaNombre">-</p>
-            </div>
-            <div class="info-caja" id="montoInfo">
-              <h3>Monto</h3>
-              <p id="monto">-</p>
-            </div>
-            <div class="info-caja" id="estatusInfo">
-              <h3>Estatus</h3>
-              <p id="estatus">-</p>
-            </div>
-          </div>
-        
-          <p>
-            aquí hay que insertar gráficas.
-          </p>
-
-          
-        
-          <!-- Gráfica de Riesgo -->
-          <div class="grafica-riesgo">
-            <canvas id="graficaRiesgo"></canvas>
-          </div>
-        </section>
-  
+          </section>
 
         <!-- Empresas Promovidas -->
         <section id="empresasPromovidas" class="section">
@@ -300,62 +206,6 @@
                       Ver Detalle
                     </button>
                   </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- Cobranza -->
-        <section id="cobranza" class="section">
-          <h2>Cobranza</h2>
-          <p>Gestión y seguimiento de créditos en cobranza.</p>
-
-          <!-- Tabla de Cobranza -->
-          <div class="tabla-container">
-            <table class="tabla-cobranza">
-              <thead>
-                <tr>
-                  <th># Crédito</th>
-                  <th>Empresa Promovida: Razón Social</th>
-                  <th>Monto Insoluto</th>
-                  <th>Fecha Siguiente Pago de Intereses</th>
-                  <th>Al corriente de pago de intereses</th>
-                  <th>Despacho de Cobranza Asignado</th>
-                  <th>Detalle del Crédito</th>
-                  <th>Días de Atraso</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Ejemplo de datos -->
-
-                <tr>
-                  <td>001</td>
-                  <td>Empresa XYZ S.A. de C.V.</td>
-                  <td>$500,000</td>
-                  <td>2024-12-20</td>
-                  <td class="al-corriente">Sí</td>
-                  <td>—</td>
-                  <td>
-                    <button class="btn-detalle" onclick="verDetalleCredito(1)">
-                      Ver
-                    </button>
-                  </td>
-                  <td class="dias-atraso">40</td>
-                </tr>
-                <tr>
-                  <td>002</td>
-                  <td>Empresa ABC S.A.</td>
-                  <td>$300,000</td>
-                  <td>2024-12-18</td>
-                  <td class="en-mora">No</td>
-                  <td>Despacho Legal 1</td>
-                  <td>
-                    <button class="btn-detalle" onclick="verDetalleCredito(2)">
-                      Ver
-                    </button>
-                  </td>
-                  <td class="dias-atraso">95</td>
                 </tr>
               </tbody>
             </table>

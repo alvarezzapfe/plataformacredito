@@ -1,473 +1,156 @@
-/* General */
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #f4f7fa;
 }
 
-/* Barra Lateral */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 220px;
-  height: 100%;
-  background-color: #003366; /* Azul marino */
-  padding-top: 20px;
-  z-index: 100;
-}
-
-.sidebar a {
-  padding: 15px 25px;
-  text-decoration: none;
-  font-size: 18px;
-  color: #ddd;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #fff;
-  background-color: #575757;
-}
-
-/* Estilo del botón hamburger */
-.menu-btn {
-  font-size: 30px;
-  color: #003366; /* Azul marino */
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-/* Opciones de menú superior */
-.menu-options {
-  display: none;
-  position: fixed;
-  top: 0;
-  right: 0;
-  background-color: #fff;
-  border-left: 1px solid #ddd;
-  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.menu-options a {
-  display: block;
-  padding: 15px;
-  text-decoration: none;
-  color: #003366;
-  font-size: 18px;
-  transition: background-color 0.3s;
-}
-
-.menu-options a:hover {
-  background-color: #f0f0f0;
-}
-
-/* Contenido principal */
-.content {
-  margin-left: 250px;
-  padding: 20px;
-  flex-grow: 1;
-  background-color: #fff;
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.section {
-  display: none;
-}
-
-.section.active {
-  display: block;
-}
-
-/* Estilo para el footer */
-footer {
-  background-color: #003366; /* Azul marino */
-  color: #fff;
+header {
   text-align: center;
-  padding: 10px;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-}
-
-/* Estilo para el botón de Agregar Crédito */
-.btn-agregar {
-  background-color: #f06292; /* Rosa sobrio */
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 20px;
-  transition: background-color 0.3s;
-}
-
-.btn-agregar:hover {
-  background-color: #ec407a; /* Rosa más fuerte al pasar el mouse */
-}
-
-/* Estilo de la tabla */
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.table th,
-.table td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.table th {
-  background-color: #003366; /* Azul marino */
-  color: white;
-  font-weight: bold;
-}
-
-.table tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-.table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Estilo para las celdas de la tabla */
-.table td {
-  font-size: 14px;
-  color: #333;
-}
-
-/* Estilo para el botón Detalle */
-.table button {
-  background-color: #4caf50; /* Verde */
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-}
-
-.table button:hover {
-  background-color: #45a049; /* Verde más oscuro */
-}
-
-/* Estilo de la columna Estatus */
-.estatus {
-  padding: 8px 12px;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: bold;
-  color: white; /* Texto en blanco para contrastar */
-}
-
-/* Colores según el estatus */
-.fondeado {
-  background-color: #4caf50; /* Verde */
-}
-
-.aprobado {
-  background-color: #ff9800; /* Naranja */
-}
-
-.desinvertido {
-  background-color: #81d4fa; /* Azul Claro */
-}
-
-.default {
-  background-color: #f44336; /* Rojo Claro Fosforescente */
-}
-
-/* Contenedor del Copiloto AI */
-.ai-container {
-  text-align: center;
-  margin: 20px 0;
-}
-
-.ai-icon {
-  width: 100px;
-  animation: moveUpDown 2s infinite ease-in-out;
-}
-
-/* Animación para la imagen */
-@keyframes moveUpDown {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Estilo del cuadro de preguntas */
-.chat-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-}
-
-.chat-box textarea {
-  width: 80%;
-  height: 100px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 16px;
-  resize: none;
-}
-
-.chat-box button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.chat-box button:hover {
-  background-color: #0056b3;
-}
-
-/* Contenedor de indicadores */
-.indicators {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.indicator {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  text-align: center;
-}
-
-.indicator h3 {
-  font-size: 18px;
-  color: #003366;
-}
-
-.indicator p {
+  margin: 20px;
   font-size: 24px;
   color: #333;
-  font-weight: bold;
 }
 
-/* para copiloto AI*/
-
-/* Estilos generales para el Copiloto AI */
-/* Estilos generales para el Copiloto AI */
-.copiloto-container {
-  position: fixed;
-  top: 50%; /* Centrar verticalmente */
-  left: 50%; /* Centrar horizontalmente */
-  transform: translate(
-    -50%,
-    -50%
-  ); /* Ajuste para asegurar el centrado exacto */
-  display: flex;
-  align-items: center; /* Alineamos los elementos al centro */
-  justify-content: center;
-  flex-direction: row; /* Los elementos estarán en una fila */
-  z-index: 9999;
-}
-
-.copiloto-icon {
-  width: 240px; /* 3 veces más grande */
-  height: 240px; /* 3 veces más grande */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation: moveUpDown 4s ease-in-out infinite; /* Movimiento hacia arriba y abajo */
-  margin-left: 40px; /* Espacio entre el mago y la caja */
-}
-
-.copiloto-icon img {
+.form-step {
+  display: none; /* Ocultar todos los formularios inicialmente */
+  padding: 20px;
+  box-sizing: border-box;
   width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-
-/* Animación para mover el icono hacia arriba y abajo */
-@keyframes moveUpDown {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-30px); /* Movimiento hacia arriba */
-  }
-  100% {
-    transform: translateY(0); /* Movimiento hacia abajo */
-  }
-}
-
-/* Estilo del cuadro de chat */
-.copiloto-chatbox {
-  background-color: #ffffff;
-  padding: 20px;
+  max-width: 650px;
+  margin: 0 auto 30px;
+  background-color: white;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  width: 320px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-h3 {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-textarea {
-  width: 90%;
-  height: 50px;
-  padding: 12px;
-  border-radius: 8px;
-  border: 2px solid #ccc;
-  font-size: 14px;
-  margin-bottom: 10px;
-  resize: none;
-  background-color: #f5f5f5;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: 0.3s;
-}
-
-textarea:focus {
-  outline: none;
-  border-color: #4caf50;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
-}
-
-/* Botón de envío */
-button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* Estilo para la respuesta del mago */
-.respuesta-container {
-  margin-top: 20px;
-  background-color: #f0f0f0;
-  padding: 15px;
-  border-radius: 8px;
-  width: 90%;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-h4 {
-  font-size: 16px;
-  color: #333;
-}
-
-#respuestaText {
-  font-size: 14px;
-  color: #666;
-  margin-top: 10px;
-}
-
-/* ingreso general*/
-
-/* Estilos generales */
-body {
-  font-family: Arial, sans-serif;
-}
-
-.form-container {
-  width: 80%;
-  max-width: 750px;
-  margin: 0 auto;
-  padding: 20px;
+.form-step.active {
+  display: block; /* Mostrar el formulario activo */
 }
 
 .steps {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-bottom: 30px;
+  padding: 0;
 }
 
 .step {
   text-align: center;
-}
-
-.step-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #ccc;
-  display: inline-block;
-  color: white;
-  line-height: 40px;
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-.step p {
-  font-size: 14px;
-}
-
-/* Estilo del formulario */
-.form-step {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-input,
-select {
-  width: 90%;
-  padding: 05px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
+  flex: 1;
+  position: relative;
+  transition: all 0.3s ease;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
+.step-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 auto;
+  line-height: 50px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.step.active .step-circle {
+  background-color: #41e897;
+}
+
+.step:hover .step-circle {
+  background-color: #0084ff;
+}
+
+.step p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.form-container input,
+.form-container select,
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-container button {
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.form-container button:hover {
+  background-color: #41e897;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.form-container {
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.form-container input,
+.form-container select {
+  font-size: 16px;
+  padding: 12px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+.form-container button {
+  background-color: #41e897;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+}
+
+.form-container button:hover {
+  background-color: #5be975;
+}
+
+/*  reglas cajas   */
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  margin-top: 30px;
+}
+
+.dashboard-btn {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  padding: 10px 20px;
+  background-color: #41e897;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 30px; /* Ajusta este valor según el nivel de redondez deseado */
 }

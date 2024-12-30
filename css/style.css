@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@300;400;600;700&display=swap");
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   color: #0c0c0c;
   background-color: #ffffff;
   overflow-x: hidden;
@@ -50,7 +50,7 @@ body {
 }
 
 .heading_container h2 span {
-  color: #00bbf0;
+  color: #41e897;
 }
 
 .heading_container p {
@@ -309,16 +309,16 @@ a:focus {
 .slider_section .detail-box .btn-box .btn1 {
   display: inline-block;
   padding: 10px 15px;
-  background-color: #00bbf0;
+  background-color: #41e897;
   color: #ffffff;
-  border-radius: 0;
+  border-radius: 3pt;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
 }
 
 .slider_section .detail-box .btn-box .btn1:hover {
-  background-color: #007fa4;
+  background-color: #41e897;
 }
 
 .slider_section .detail-box .btn-box .btn2 {
@@ -326,7 +326,7 @@ a:focus {
   padding: 10px 15px;
   background-color: #000000;
   color: #ffffff;
-  border-radius: 0;
+  border-radius: 3pt;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
@@ -473,9 +473,9 @@ a:focus {
 .service_section .btn-box a {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #00bbf0;
+  background-color: #41e897;
   color: #ffffff;
-  border-radius: 0;
+  border-radius: 3pt;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
@@ -515,9 +515,9 @@ a:focus {
 .about_section .detail-box a {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #00bbf0;
+  background-color: #41e897;
   color: #ffffff;
-  border-radius: 0px;
+  border-radius: 3pt;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
@@ -590,9 +590,9 @@ a:focus {
 .why_section .btn-box a {
   display: inline-block;
   padding: 10px 45px;
-  background-color: #00bbf0;
+  background-color: #41e897;
   color: #ffffff;
-  border-radius: 0;
+  border-radius: 3pt;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
@@ -907,9 +907,9 @@ a:focus {
   text-align: center;
   display: inline-block;
   padding: 10px 55px;
-  background-color: #00bbf0;
+  background-color: #41e897;
   color: #ffffff;
-  border-radius: 0;
+  border-radius: 3pt;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   border: none;
